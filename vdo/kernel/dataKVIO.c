@@ -38,6 +38,7 @@
 #include "ioSubmitter.h"
 #include "vdoCommon.h"
 #include "verify.h"
+#include "zlib.h"
 
 static void dumpPooledDataKVIO(void *poolData, void *data);
 
@@ -548,10 +549,13 @@ static void kvdoCompressWork(KvdoWorkItem *item)
     setWorkQueuePrivateData(context);
   }
 
-  int size = LZ4_compress_ctx_limitedOutput(context, dataKVIO->dataBlock,
-                                            dataKVIO->scratchBlock,
-                                            VDO_BLOCK_SIZE,
-                                            VDO_BLOCK_SIZE);
+  // int size = LZ4_compress_ctx_limitedOutput(context, dataKVIO->dataBlock,
+  //                                           dataKVIO->scratchBlock,
+  //                                           VDO_BLOCK_SIZE,
+  //                                           VDO_BLOCK_SIZE);
+
+  int size = 
+
   DataVIO *dataVIO = &dataKVIO->dataVIO;
   if (size > 0) {
     // The scratch block will be used to contain the compressed data.
